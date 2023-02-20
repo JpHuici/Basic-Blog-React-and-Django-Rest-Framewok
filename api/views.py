@@ -6,14 +6,14 @@ from .models import Blog
 from .serializers import BlogSerializer
 
 @api_view(['GET'])
-def getBlogs(request):
+def getBlog(request):
     blog = Blog.objects.all()
     serializer = BlogSerializer(blog, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def getBlog(request):
+def postBlog(request):
     data = request.data
     blog = Blog.object.create(
         title= data['title'],
@@ -38,6 +38,4 @@ def deleteBlog(request,pk):
     blog = Blog.objects.get(id=pk)
     blog.delete()
     return Response('Blog Deleted')
-
-
 
