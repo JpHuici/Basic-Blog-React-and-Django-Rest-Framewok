@@ -11,10 +11,29 @@ export default function BlogForm({blogs, setBlogs}) {
         setBody(e.target.value);
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        if (!body) {
+            alert("Write something to post!")
+        }
+        axios.post('/post/', {
+            body:body
+        }),then((response) => {
+            setBody('');
+            const {data} = response;
+            setBlogs([
+                ...blogs,
+                data
+            ]).catch(() => {
+                alert("Something went wrong!")
+            })
+        })
+    }
+
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <InputGroup className='mb-3'>
-                <FormControl type='text' placeholder='Type Here!'/>
+                <FormControl onChange={handleChange} value={body} type='text' placeholder='Type Here!'/>
                     <Button variant='dark' type='submit'>
                         POST
                     </Button>
