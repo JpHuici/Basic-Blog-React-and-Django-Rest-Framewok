@@ -5,10 +5,12 @@ import Header from './components/header';
 import Blogform from './components/Blogform';
 import Blogs from './components/Blogs';
 
+// The App function is defined as a component function that returns JSX elements. The state of the blogs is initialized as an empty array using the useState state hook.
 function App() {
 
   const [blogs, setBlogs] = useState([]);
-  
+
+  // The effect hook useEffect is used to make an API call on the server and retrieve the blog data in the mounted component, which is indicated by the second argument of the empty useEffect function []. The retrieved blog data is updated in the state using the setBlogs function.  
 useEffect(() => {
   axios.get('/get/')
   .then((response) => {
@@ -30,3 +32,4 @@ useEffect(() => {
 }
 
 export default App;
+
