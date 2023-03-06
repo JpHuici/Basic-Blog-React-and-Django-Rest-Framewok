@@ -5,8 +5,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import Modal from 'react-bootstrap/Modal';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
 import ModalHeader from 'react-bootstrap/ModalHeader'
-import {FaEdit, FatrashAlt} from 'react-icons/fa';
-import axion from 'axios';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import axios from 'axios';
 
 // The Blogs component is defined as a function that accepts two properties: blogs and setBlogs. blogs is a list of posts and setBlogs is a function that is used to update blogs.
 export default function Blogs({blogs = [], setBlogs}) {
@@ -23,7 +23,7 @@ export default function Blogs({blogs = [], setBlogs}) {
                 } 
                 return blog;
             })
-            setBlogs[newBlogs]
+            setBlogs(newBlogs)
         }).catch(() => {
             alert("Something went wrong!")
         }) 
@@ -49,7 +49,7 @@ export default function Blogs({blogs = [], setBlogs}) {
         axios.delete(`/delete/${id}/`).then(() => {
             const newBlogs = blogs.filter(blog => {
                 return blog.id !== id
-            }); setBlogs[newBlogs]
+            }); setBlogs(newBlogs)
         }).catch(() => {
             alert("Something went wrong!")
         })
@@ -69,7 +69,7 @@ export default function Blogs({blogs = [], setBlogs}) {
                                 {/* When the FaEdit button is clicked, the record state is set with the corresponding publication and a modal opens that allows editing the publication content. The modal contains two buttons: Close and Save. Close is used to close the modal and Save is used to save the changes. */}
                                 <FaEdit onClick={() => {setRecord(blog); setShow(true)}} size={20} style={{ cursor: 'pointer' }}/>
                                 {/* When the FatrashAlt button is clicked, the handleDelete function is called, which deletes the corresponding post and updates the blogs state using the setBlogs function. */}
-                                <FatrashAlt onClick={() => {handleDelete (blog.id)}} size={20} style={{ cursor: 'pointer' }}/>
+                                <FaTrashAlt onClick={() => {handleDelete (blog.id)}} size={20} style={{ cursor: 'pointer' }}/>
                             </div>
                         </ListGroupItem>
 

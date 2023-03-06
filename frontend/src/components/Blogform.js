@@ -20,7 +20,7 @@ export default function BlogForm({blogs, setBlogs}) {
         }
         axios.post('/post/', {
             body:body
-        }),then((response) => {
+        }).then((response) => {
             setBody('');
             const {data} = response;
             setBlogs([
