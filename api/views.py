@@ -1,5 +1,4 @@
 from rest_framework.response import Response
-from rest_framework.serializers import Serializer
 from rest_framework.decorators import api_view
 
 from .models import Blog
@@ -19,7 +18,6 @@ def getBlog(request):
 def postBlog(request):
     data = request.data
     blog = Blog.object.create(
-        title= data['title'],
         body= data['body']
     )
     serializer = BlogSerializer(blog, many=False)

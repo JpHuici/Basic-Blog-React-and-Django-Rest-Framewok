@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 // Components
-import Header from './components/header';
-import Blogform from './components/Blogform';
+import Header from './components/Header';
+import BlogForm from './components/BlogForm';
 import Blogs from './components/Blogs';
 
 // The App function is defined as a component function that returns JSX elements. The state of the blogs is initialized as an empty array using the useState state hook.
@@ -16,7 +16,7 @@ useEffect(() => {
   .then((response) => {
     setBlogs(response.data)
   }).catch(() => {
-    alert('Something went wrong')
+    alert('Something went wrong!')
   })
 }, [])
 
@@ -24,7 +24,7 @@ useEffect(() => {
     <>
       <Header/>
       <div className='container p-4'>
-        <Blogform blogs={blogs} setBlogs={setBlogs}/>
+        <BlogForm blogs={blogs} setBlogs={setBlogs}/>
         <Blogs blogs={blogs} setBlogs={setBlogs}/>
       </div>
     </>
