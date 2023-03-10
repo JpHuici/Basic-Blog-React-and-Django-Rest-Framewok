@@ -17,7 +17,7 @@ def getBlog(request):
 @api_view(['POST']) # This function is decorated with @api_view(['POST']), indicating that it responds to POST requests. It receives the request data in request.data, creates a new record in the database using the received data, serializes it with the BlogSerializer serializer and returns an HTTP response with the serialized data in JSON format.
 def postBlog(request):
     data = request.data
-    blog = Blog.object.create(
+    blog = Blog.objects.create(
         body= data['body']
     )
     serializer = BlogSerializer(blog, many=False)

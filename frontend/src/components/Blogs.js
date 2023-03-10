@@ -14,7 +14,7 @@ export default function Blogs({blogs = [], setBlogs}) {
     const [show, setShow] = useState(false); // useState is used to initialize the state of the component and update it when necessary. The state is initialized with show, record and body and updated using functions like setShow, setRecord and setBody.
     const [record, setRecord] = useState(null);
     const handleUpdate = async (id, value) => {
-        return axios.put(`/put/${id}/)`, value).then((response) => {
+        return axios.put(`/put/${id}/`, value).then((response) => {
             const {data} = response;
             // The Blogs component renders a list of blog posts. It uses the map function to traverse the list of posts and create a ListGroupItem for each post.
             const newBlogs = blogs.map (blog => {
