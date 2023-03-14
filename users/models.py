@@ -26,14 +26,14 @@ class CustomAccountManage(BaseUserManager):
         return self.create_user(email, user_name, first_name, password, **other_fields)
     
 class User(AbstractBaseUser, PermissionError):
-    email = models.EmailField()
-    user_name = models.CharField
-    first_name = models.CharField
-    start_date = models.DateTimeField
-    bio = models.TextField
-    image = models.ImageField
-    is_staff = models.BooleanField
-    is_active = models.BooleanField
+    email = models.EmailField(_('email address'), unique=True)
+    user_name = models.CharField(max_length=100, unique=True)
+    first_name = models.CharField(max_length=100)
+    start_date = models.DateTimeField(default=timezone.now)
+    bio = models.TextField(_('bio'), max_length=500, blank=True)
+    image = models.ImageField(null=True, blank=True, default='/pic.jpg')
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     objects =  CustomAccountManage()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_name', 'first_name']
